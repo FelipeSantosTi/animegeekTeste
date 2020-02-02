@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        ThunderByte\Providers\AppServiceProvider::class,
+        ThunderByte\Providers\AuthServiceProvider::class,
+        // ThunderByte\Providers\BroadcastServiceProvider::class,
+        ThunderByte\Providers\EventServiceProvider::class,
+        ThunderByte\Providers\RouteServiceProvider::class,
 
     ],
 

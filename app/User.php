@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ThunderByte;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
