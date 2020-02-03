@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="{{ url(mix('backend/assets/css/boot.css')) }}"/>
     <link rel="stylesheet" href="{{ url(mix('backend/assets/css/style.css')) }}"/>
 
-    <title>UpAdmin - Site Control</title>
+    @hasSection('css')
+        @yield('css')
+    @endif
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>ThundeByte</title>
 </head>
 <body>
 
@@ -25,16 +31,16 @@
 <div class="dash">
     <aside class="dash_sidebar">
         <article class="dash_sidebar_user">
-            <img class="dash_sidebar_user_thumb" src="assets/images/avatar.jpg" alt="" title=""/>
+            <img class="dash_sidebar_user_thumb" src="{{ url(asset('backend/assets/images/avatar.jpg')) }}" alt="" title=""/>
 
             <h1 class="dash_sidebar_user_name">
-                <a href="">Gustavo Web</a>
+                <a href="">Administrador</a>
             </h1>
         </article>
 
         <ul class="dash_sidebar_nav">
-            <li class="dash_sidebar_nav_item active">
-                <a class="icon-tachometer" href="dashboard.php?app=dashboard/index">Dashboard</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.home') }}">
+                <a class="icon-tachometer" href="{ route('admin.home') }}">Dashboard</a>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-users" href="dashboard.php?app=users/index">Clientes</a>
                 <ul class="dash_sidebar_nav_submenu">
@@ -57,7 +63,7 @@
                 </ul>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
-            <li class="dash_sidebar_nav_item"><a class="icon-sign-out on_mobile" href="" target="_blank">Sair</a></li>
+            <li class="dash_sidebar_nav_item"><a class="icon-sign-out on_mobile" href="{{ route('admin.logout') }}" target="_blank">Sair</a></li>
         </ul>
 
     </aside>
@@ -72,7 +78,7 @@
                         <i class="icon-imob text-orange"></i><a href="">Up<b>Admin</b></a>
                     </h1>
                     <div class="dash_userbar_box_bar no_mobile">
-                        <a class="text-red icon-sign-out" href="">Sair</a>
+                        <a class="text-red icon-sign-out" href="{{ route('admin.logout') }}">Sair</a>
                     </div>
                 </div>
             </div>
