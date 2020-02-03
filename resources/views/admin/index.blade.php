@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="stylesheet" href="assets/css/reset.css"/>
-    <link rel="stylesheet" href="assets/css/boot.css"/>
-    <link rel="stylesheet" href="assets/css/login.css"/>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png"/>
+    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/reset.css')) }}"/>
+    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/boot.css')) }}"/>
+    <link rel="stylesheet" href="{{ url(mix('backend/assets/css/login.css')) }}"/>
+    <link rel="icon" type="image/png" href="backend/assets/images/favicon.png"/>
 
-    <title>UpAdmin - Site Control</title>
+    <title>ThunderByte</title>
 </head>
 <body>
 
@@ -38,12 +38,12 @@
             </form>
 
             <footer>
-                <p>Desenvolvido por <a href="https://www.upinside.com.br">www.<b>upinside</b>.com.br</a></p>
+                <p>Desenvolvido por <a href="https://www.thunderbyte.com.br">www.<b>ThunderByte</b>.com.br</a></p>
                 <p>&copy; <?= date("Y"); ?> - Todos os Direitos Reservados</p>
                 <p class="dash_login_left_box_support">
                     <a target="_blank"
                        class="icon-whatsapp transition text-green"
-                       href="https://api.whatsapp.com/send?phone=DDI+DDD+TELEFONE&text=Olá, preciso de ajuda com o login."
+                       href="https://api.whatsapp.com/send?phone=55+91+984822408&text=Olá, preciso de ajuda com o login."
                     >Precisa de Suporte?</a>
                 </p>
             </footer>
@@ -54,7 +54,8 @@
 
 </div>
 
-<script src="assets/js/jquery.min.js"></script>
+<script src="{{ url(mix('backend/assets/js/jquery.js')) }}"></script>
+<script src="{{ url(mix('backend/assets/js/login.js')) }}"></script>
 
 </body>
 </html>
