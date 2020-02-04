@@ -62,9 +62,9 @@ class User extends Authenticatable
         $this->attributes['admin'] = ($value === true || $value === 'on' ? 1 : 0);
     }
 
-    public function setClientAttribute($value)
+    public function setSellerAttribute($value)
     {
-        $this->attributes['client'] = ($value === true || $value === 'on' ? 1 : 0);
+        $this->attributes['seller'] = ($value === true || $value === 'on' ? 1 : 0);
     }
 
     private function convertStringToDouble(?string $param)
