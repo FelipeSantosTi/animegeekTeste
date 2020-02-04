@@ -40,29 +40,35 @@
 
         <ul class="dash_sidebar_nav">
             <li class="dash_sidebar_nav_item {{ isActive('admin.home') }}">
-                <a class="icon-tachometer" href="{ route('admin.home') }}">Dashboard</a>
+                <a class="icon-tachometer" href="{{ route('admin.home') }}">Dashboard</a>
             </li>
-            <li class="dash_sidebar_nav_item"><a class="icon-users" href="dashboard.php?app=users/index">Clientes</a>
+
+            <li class="dash_sidebar_nav_item {{ isActive('admin.users') }}"><a class="icon-users"
+                href="{{ route('admin.users.index') }}">Usuários</a>
                 <ul class="dash_sidebar_nav_submenu">
-                    <li class=""><a href="dashboard.php?app=users/index">Ver Todos</a></li>
+                    <li class="{{ isActive('admin.users.index') }}"><a href="{{ route('admin.users.index') }}">Ver Todos</a></li>
+                    <li class=""><a href="dashboard.php?app=companies/index">Empresas</a></li>
+                    <li class="{{ isActive('admin.users.team') }}"><a href="{{ route('admin.users.team') }}">Time</a></li>
+                    <li class="{{ isActive('admin.users.create') }}"><a href="{{ route('admin.users.create') }}">Criar Novo</a></li>
+                </ul>
+            </li>
+
+            <li class="dash_sidebar_nav_item "><a class="icon-ticket"
+                href="">Ingressos</a>
+                <ul class="dash_sidebar_nav_submenu">
+                    <li class="{{ isActive('admin.users.index') }}"><a href="">Ver Todos</a></li>
                     <li class=""><a href="dashboard.php?app=companies/index">Empresas</a></li>
                     <li class=""><a href="dashboard.php?app=users/team">Time</a></li>
                     <li class=""><a href="dashboard.php?app=users/create">Criar Novo</a></li>
                 </ul>
             </li>
-            <li class="dash_sidebar_nav_item"><a class="icon-home" href="dashboard.php?app=properties/index">Imóveis</a>
-                <ul class="dash_sidebar_nav_submenu">
-                    <li class=""><a href="dashboard.php?app=properties/index">Ver Todos</a></li>
-                    <li class=""><a href="dashboard.php?app=properties/create">Criar Novo</a></li>
-                </ul>
-            </li>
-            <li class="dash_sidebar_nav_item"><a class="icon-file-text" href="dashboard.php?app=contracts/index">Contratos</a>
-                <ul class="dash_sidebar_nav_submenu">
-                    <li class=""><a href="dashboard.php?app=contracts/index">Ver Todos</a></li>
-                    <li class=""><a href="dashboard.php?app=contracts/create">Criar Novo</a></li>
-                </ul>
-            </li>
+
+            <li class="dash_sidebar_nav_item"><a class="icon-money" href="">Pontos de Venda</a></li>
+
+            <li class="dash_sidebar_nav_item"><a class="icon-check" href="">Autenticação</a></li>
+
             <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
+
             <li class="dash_sidebar_nav_item"><a class="icon-sign-out on_mobile" href="{{ route('admin.logout') }}" target="_blank">Sair</a></li>
         </ul>
 
@@ -75,7 +81,7 @@
                 <div class="dash_userbar_box_content">
                     <span class="icon-align-justify icon-notext mobile_menu transition btn btn-green"></span>
                     <h1 class="transition">
-                        <i class="icon-imob text-orange"></i><a href="">Up<b>Admin</b></a>
+                        <i class="icon-imob text-orange"></i><a href="">Thunder<b>Byte</b></a>
                     </h1>
                     <div class="dash_userbar_box_bar no_mobile">
                         <a class="text-red icon-sign-out" href="{{ route('admin.logout') }}">Sair</a>

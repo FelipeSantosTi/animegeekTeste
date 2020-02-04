@@ -24,7 +24,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
             /** Dashboard Home */
             Route::get('home', 'AuthController@home')->name('home');
-});
+
+            /** Usuários */
+            Route::get('users/team', 'UserController@team')->name('users.team');
+            Route::resource('users', 'UserController');
+    });
 
     /** Logout */
     Route::get('logout', 'AuthController@logout')->name('logout');
