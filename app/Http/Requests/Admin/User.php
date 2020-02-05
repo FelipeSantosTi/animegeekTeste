@@ -28,7 +28,7 @@ class User extends FormRequest
             'name' => 'required|min:3|max:191',
             'cell' => 'required',
             'email' => (!empty($this->request->all()['id']) ? 'required|email|unique:users,email,'
-            . $this->request->all()['id'] : 'required|email|unique:users,email')
+                . $this->request->all()['id'] : 'required|email|unique:users,email'),
         ];
     }
 }

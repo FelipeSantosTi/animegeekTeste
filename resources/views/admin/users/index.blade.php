@@ -40,7 +40,7 @@
                     <td>{{ $user->id }}</td>
                     <td><a href="{{ route('admin.users.edit', ['user' => $user->id]) }}" class="text-orange">{{ $user->name }}</a></td>
                     <td><a href="mailto:{{ $user->email }}" class="text-orange">{{ $user->email }}</a></td>
-                    <td><a href="" class="text-orange">{{ $user->cell }}</a></td>
+                    <td><a href="" class="text-orange mask-cell">{{ $user->cell }}</a></td>
                 </tr>
                 @endforeach
                 </tbody>

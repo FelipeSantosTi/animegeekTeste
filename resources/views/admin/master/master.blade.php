@@ -13,6 +13,8 @@
         @yield('css')
     @endif
 
+    <link rel="icon" type="image/png" href="{{ url(asset('backend/assets/images/favicon.png')) }}"/>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>ThundeByte</title>
@@ -47,19 +49,16 @@
                 href="{{ route('admin.users.index') }}">Usuários</a>
                 <ul class="dash_sidebar_nav_submenu">
                     <li class="{{ isActive('admin.users.index') }}"><a href="{{ route('admin.users.index') }}">Ver Todos</a></li>
-                    <li class=""><a href="dashboard.php?app=companies/index">Empresas</a></li>
                     <li class="{{ isActive('admin.users.team') }}"><a href="{{ route('admin.users.team') }}">Time</a></li>
                     <li class="{{ isActive('admin.users.create') }}"><a href="{{ route('admin.users.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
 
-            <li class="dash_sidebar_nav_item "><a class="icon-ticket"
-                href="">Ingressos</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.tickets') }}"><a class="icon-ticket"
+                href="{{ route('admin.tickets.index') }}">Ingressos</a>
                 <ul class="dash_sidebar_nav_submenu">
-                    <li class="{{ isActive('admin.users.index') }}"><a href="">Ver Todos</a></li>
-                    <li class=""><a href="dashboard.php?app=companies/index">Empresas</a></li>
-                    <li class=""><a href="dashboard.php?app=users/team">Time</a></li>
-                    <li class=""><a href="dashboard.php?app=users/create">Criar Novo</a></li>
+                    <li class="{{ isActive('admin.tickets.index') }}"><a href="{{ route('admin.tickets.index') }}">Ver Todos</a></li>
+                    <li class="{{ isActive('admin.tickets.create') }}"><a href="{{ isActive('admin.tickets.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
 

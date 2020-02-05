@@ -4,10 +4,9 @@ namespace ThunderByte\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use ThunderByte\Http\Controllers\Controller;
-use ThunderByte\Http\Requests\Admin\User as UserRequest;
-use ThunderByte\User;
+use ThunderByte\Ticket;
 
-class UserController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admin.users.index', [
-            'users' => $users
-        ]);
-    }
-
-    public function team()
-    {
-        return view('admin.users.team');
+        return view('admin.tickets.index');
     }
 
     /**
@@ -34,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        //
     }
 
     /**
@@ -43,11 +34,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        $userCreate = User::create($request->all());
+        $ticket = new Ticket();
+        $ticket->fill($request->all());
 
-        var_dump($userCreate);
+        var_dump($ticket->getAttributes());
     }
 
     /**
@@ -69,10 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', $id)->first();
-        return view('admin.users.edit', [
-            'user' => $user
-        ]);
+        //
     }
 
     /**
@@ -82,19 +71,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $user = User::where('id', $id)->first();
-        $user->fill($request->all());
-        $user->save();
-
-        if(!$user->save()){
-            return redirect()->back()->withInput()->withErrors();
-        }
-
-        return redirect()->route('admin.users.edit', [
-            'users' => $user->id
-        ])->with(['color' => 'green', 'message' => 'Usuário atualizado com sucesso!']);
+        //
     }
 
     /**
