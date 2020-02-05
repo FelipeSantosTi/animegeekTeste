@@ -59,7 +59,7 @@
 
             <li class="dash_sidebar_nav_item"><a class="icon-money" href="">Pontos de Venda</a></li>
 
-            <li class="dash_sidebar_nav_item"><a class="icon-check" href="">Autenticação</a></li>
+            <li class="dash_sidebar_nav_item"><a class="icon-check" href="">Controle de Acesso</a></li>
 
             <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
 

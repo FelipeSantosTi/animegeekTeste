@@ -5,6 +5,7 @@ namespace ThunderByte\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use ThunderByte\Http\Controllers\Controller;
+use ThunderByte\Ticket;
 use ThunderByte\User;
 
 class AuthController extends Controller
@@ -20,7 +21,21 @@ class AuthController extends Controller
 
     public function home()
     {
-        return view('admin.dashboard');
+        $antecipated = Ticket::where('type', 'antecipated')->count();
+        $saturday = Ticket::where('type', 'saturday')->count();
+        $sunday = Ticket::where('type', 'sunday')->count();
+
+        $ticketsTotal = Ticket::all()->count();
+
+        $presents = Ticket::where('control', 'present')->count();
+
+        return view('admin.dashboard', [
+            'antecipated' => $antecipated,
+            'saturday' => $saturday,
+            'sunday' => $sunday,
+            'total' => $ticketsTotal,
+            'presents' => $presents
+        ]);
     }
 
     public function login(Request $request)

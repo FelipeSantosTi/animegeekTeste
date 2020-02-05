@@ -46,6 +46,7 @@ class TicketController extends Controller
             $numero = 100 . rand(1000, 10000);
             $ticket->number = $numero;
             $ticket->type = 'antecipated';
+            $ticket->price = 40.00;
             $ticket->save();
 
             $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
@@ -55,6 +56,7 @@ class TicketController extends Controller
             $numero = 200 . rand(10001, 20000);
             $ticket->number = $numero;
             $ticket->type = 'saturday';
+            $ticket->price = 30.00;
             $ticket->save();
 
             $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
@@ -63,6 +65,7 @@ class TicketController extends Controller
             $numero = 300 . rand(20001, 30000);
             $ticket->number = $numero;
             $ticket->type = 'sunday';
+            $ticket->price = 30.00;
             $ticket->save();
 
             $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
@@ -101,7 +104,7 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

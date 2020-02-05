@@ -174,6 +174,7 @@ return [
         // ThunderByte\Providers\BroadcastServiceProvider::class,
         ThunderByte\Providers\EventServiceProvider::class,
         ThunderByte\Providers\RouteServiceProvider::class,
+        
 
     ],
 

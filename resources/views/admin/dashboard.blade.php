@@ -11,9 +11,10 @@
             <section class="app_dash_home_stats">
                 <article class="control radius">
                     <h4 class="icon-ticket">Ingressos Vendidos</h4>
-                    <p><b>Antecipados:</b> 100</p>
-                    <p><b>Online:</b> 100</p>
-                    <p><b>Total:</b> 200</p>
+                    <p><b>Antecipados:</b> {{ $antecipated  }}</p>
+                    <p><b>Sábado:</b> {{ $saturday  }}</p>
+                    <p><b>Domingo:</b> {{ $sunday }}</p>
+                    <p><b>Total:</b> {{ $total }}</p>
                 </article>
 
                 <article class="blog radius">
@@ -32,7 +33,7 @@
 
     <section class="dash_content_app" style="margin-top: 40px;">
         <header class="dash_content_app_header">
-            <h2 class="icon-tachometer">Dados Por Ponto de Venda</h2>
+            <h2 class="icon-calculator">Dados Por Ponto de Venda</h2>
         </header>
 
         <div class="dash_content_app_box">
