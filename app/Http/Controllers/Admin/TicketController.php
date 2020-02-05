@@ -5,6 +5,8 @@ namespace ThunderByte\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use ThunderByte\Http\Controllers\Controller;
 use ThunderByte\Ticket;
+use \ThunderByte\Http\Requests\Admin\Ticket as TicketRequest;
+use Picqer;
 
 class TicketController extends Controller
 {
@@ -34,12 +36,38 @@ class TicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TicketRequest $request)
     {
         $ticket = new Ticket();
         $ticket->fill($request->all());
 
-        var_dump($ticket->getAttributes());
+        //var_dump($ticket->getAttributes());
+        if ($ticket->number == 1) {
+            $numero = 100 . rand(1000, 10000);
+            $ticket->number = $numero;
+            $ticket->type = 'antecipated';
+            $ticket->save();
+
+            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+            echo $generator->getBarcode($numero, $generator::TYPE_CODE_128);
+
+        } elseif ($ticket->number == 2) {
+            $numero = 200 . rand(10001, 20000);
+            $ticket->number = $numero;
+            $ticket->type = 'saturday';
+            $ticket->save();
+
+            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+            echo $generator->getBarcode($numero, $generator::TYPE_CODE_128);
+        } elseif ($ticket->number == 3) {
+            $numero = 300 . rand(20001, 30000);
+            $ticket->number = $numero;
+            $ticket->type = 'sunday';
+            $ticket->save();
+
+            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+            echo $generator->getBarcode($numero, $generator::TYPE_CODE_128);
+        }
     }
 
     /**

@@ -37,17 +37,13 @@
                             @csrf
 
                             <div id="data">
-                                <div class="label_gc">
+                                <div class="label_g2">
                                     <label class="label">
-                                        <input type="checkbox" name="sale"><span>Antecipado</span>
-                                    </label>
-
-                                    <label class="label">
-                                        <input type="checkbox" name="rent"><span>Sábado</span>
-                                    </label>
-
-                                    <label class="label">
-                                        <input type="checkbox" name="rent"><span>Domingo</span>
+                                        <select name="number">
+                                            <option value="1" {{ (old('type') == '1' ? 'selected' : '') }}>Antecipado</option>
+                                            <option value="2" {{ (old('type') == '2' ? 'selected' : '') }}>Sábado</option>
+                                            <option value="3" {{ (old('type') == '3' ? 'selected' : '') }}>Domingo</option>
+                                        </select>
                                     </label>
                                 </div>
                             </div>
