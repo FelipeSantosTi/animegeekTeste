@@ -7,6 +7,7 @@ use ThunderByte\Http\Controllers\Controller;
 use ThunderByte\Ticket;
 use \ThunderByte\Http\Requests\Admin\Ticket as TicketRequest;
 use Picqer;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class TicketController extends Controller
 {
@@ -43,35 +44,52 @@ class TicketController extends Controller
 
         //var_dump($ticket->getAttributes());
         if ($ticket->number == 1) {
-            $numero = 100 . rand(1000, 10000);
+            $numero = 100 . rand(10000, 20000);
             $ticket->number = $numero;
             $ticket->type = 'antecipated';
             $ticket->price = 40.00;
             $ticket->save();
 
-            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-            echo $generator->getBarcode($numero, $generator::TYPE_CODE_128);
+            $title = "INGRESSO ANTECIPADO";
+
+            $pdf = PDF::loadView('admin.tickets.print',[
+                'numero' => $numero,
+                'title' => $title
+            ]);
+            return $pdf->setPaper('a7')->stream('Ingresso_Antecipado.pdf');
 
         } elseif ($ticket->number == 2) {
-            $numero = 200 . rand(10001, 20000);
+            $numero = 200 . rand(20001, 30000);
             $ticket->number = $numero;
             $ticket->type = 'saturday';
             $ticket->price = 30.00;
             $ticket->save();
 
-            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-            echo $generator->getBarcode($numero, $generator::TYPE_CODE_128);
+            $title = "INGRESSO - SÁBADO";
+
+            $pdf = PDF::loadView('admin.tickets.print',[
+                'numero' => $numero,
+                'title' => $title
+            ]);
+            return $pdf->setPaper('a7')->stream('Ingresso_Sábado.pdf');
+
         } elseif ($ticket->number == 3) {
-            $numero = 300 . rand(20001, 30000);
+            $numero = 300 . rand(30001, 40000);
             $ticket->number = $numero;
             $ticket->type = 'sunday';
             $ticket->price = 30.00;
             $ticket->save();
 
-            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-            echo $generator->getBarcode($numero, $generator::TYPE_CODE_128);
+            $title = "INGRESSO - DOMINGO";
+
+            $pdf = PDF::loadView('admin.tickets.print',[
+                'numero' => $numero,
+                'title' => $title
+            ]);
+            return $pdf->setPaper('a7')->stream('Ingresso_Domingo.pdf');
         }
     }
+
 
     /**
      * Display the specified resource.
