@@ -18,7 +18,21 @@ class TicketController extends Controller
      */
     public function index()
     {
-        return view('admin.tickets.index');
+        $antecipated = Ticket::where('type', 'antecipated')->count();
+        $saturday = Ticket::where('type', 'saturday')->count();
+        $sunday = Ticket::where('type', 'sunday')->count();
+
+        $ticketsTotal = Ticket::all()->count();
+
+        $presents = Ticket::where('control', 'present')->count();
+
+        return view('admin.tickets.index', [
+            'antecipated' => $antecipated,
+            'saturday' => $saturday,
+            'sunday' => $sunday,
+            'total' => $ticketsTotal,
+            'presents' => $presents
+        ]);
     }
 
     /**
@@ -34,59 +48,65 @@ class TicketController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(TicketRequest $request)
     {
-        $ticket = new Ticket();
-        $ticket->fill($request->all());
+        switch ($_POST['action']) {
+            case 'Antecipado':
+                $ticket = new Ticket();
+                $numero = 100 . rand(10000, 20000);
+                $ticket->number = $numero;
+                $ticket->type = 'antecipated';
+                $ticket->price = 40.00;
+                $ticket->save();
 
-        //var_dump($ticket->getAttributes());
-        if ($ticket->number == 1) {
-            $numero = 100 . rand(10000, 20000);
-            $ticket->number = $numero;
-            $ticket->type = 'antecipated';
-            $ticket->price = 40.00;
-            $ticket->save();
+                $title = "INGRESSO ANTECIPADO";
 
-            $title = "INGRESSO ANTECIPADO";
+                $pdf = PDF::loadView('admin.tickets.print', [
+                    'numero' => $numero,
+                    'title' => $title
+                ]);
+                return $pdf->setPaper('a7')->stream('Ingresso_Antecipado.pdf');
+                break;
 
-            $pdf = PDF::loadView('admin.tickets.print',[
-                'numero' => $numero,
-                'title' => $title
-            ]);
-            return $pdf->setPaper('a7')->stream('Ingresso_Antecipado.pdf');
+            case 'Sábado':
+                $ticket = new Ticket();
+                $numero = 200 . rand(20001, 30000);
+                $ticket->number = $numero;
+                $ticket->type = 'saturday';
+                $ticket->price = 30.00;
+                $ticket->save();
 
-        } elseif ($ticket->number == 2) {
-            $numero = 200 . rand(20001, 30000);
-            $ticket->number = $numero;
-            $ticket->type = 'saturday';
-            $ticket->price = 30.00;
-            $ticket->save();
+                $title = "INGRESSO - SÁBADO";
 
-            $title = "INGRESSO - SÁBADO";
+                $pdf = PDF::loadView('admin.tickets.print', [
+                    'numero' => $numero,
+                    'title' => $title
+                ]);
+                return $pdf->setPaper('a7')->stream('Ingresso_Sábado.pdf');
+                break;
 
-            $pdf = PDF::loadView('admin.tickets.print',[
-                'numero' => $numero,
-                'title' => $title
-            ]);
-            return $pdf->setPaper('a7')->stream('Ingresso_Sábado.pdf');
+            case 'Domingo':
+                $ticket = new Ticket();
+                $numero = 300 . rand(30001, 40000);
+                $ticket->number = $numero;
+                $ticket->type = 'sunday';
+                $ticket->price = 30.00;
+                $ticket->save();
 
-        } elseif ($ticket->number == 3) {
-            $numero = 300 . rand(30001, 40000);
-            $ticket->number = $numero;
-            $ticket->type = 'sunday';
-            $ticket->price = 30.00;
-            $ticket->save();
+                $title = "INGRESSO - DOMINGO";
 
-            $title = "INGRESSO - DOMINGO";
+                $pdf = PDF::loadView('admin.tickets.print', [
+                    'numero' => $numero,
+                    'title' => $title
+                ]);
+                return $pdf->setPaper('a7')->stream('Ingresso_Domingo.pdf');
+                break;
 
-            $pdf = PDF::loadView('admin.tickets.print',[
-                'numero' => $numero,
-                'title' => $title
-            ]);
-            return $pdf->setPaper('a7')->stream('Ingresso_Domingo.pdf');
+            default:
+                //no action sent
         }
     }
 
@@ -94,7 +114,7 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -105,7 +125,7 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -116,8 +136,8 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -128,7 +148,7 @@ class TicketController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
