@@ -93,7 +93,7 @@
 
                             <label class="label">
                                 <input type="checkbox" name="seller" {{ (old('seller') == 'on' ||
-                                old('seller') == true ? 'checked' : '') }}><span>Cliente</span>
+                                old('seller') == true ? 'checked' : '') }}><span>Vendedor</span>
                             </label>
                         </div>
                     </div>

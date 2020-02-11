@@ -54,12 +54,14 @@
             </li>
 
             <li class="dash_sidebar_nav_item {{ isActive('admin.tickets') }}">
-                <a class="icon-ticket" href="{{ route('admin.tickets.index') }}">Ingressos</a>
+                <a class="icon-star" href="{{ route('admin.tickets.index') }}">Eventos</a>
+                <ul class="dash_sidebar_nav_submenu">
+                    <li class="{{ isActive('admin.tickets.index') }}"><a href="{{ route('admin.tickets.index') }}">Ingressos</a></li>
+                    <li class="{{ isActive('admin.tickets.control') }}"><a href="{{ route('admin.tickets.control') }}">Controle de Acesso</a></li>
+                </ul>
             </li>
 
             <li class="dash_sidebar_nav_item"><a class="icon-money" href="">Pontos de Venda</a></li>
-
-            <li class="dash_sidebar_nav_item"><a class="icon-check" href="">Controle de Acesso</a></li>
 
             <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
 

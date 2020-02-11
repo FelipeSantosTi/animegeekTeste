@@ -2,12 +2,13 @@
 
 namespace ThunderByte\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use ThunderByte\Http\Controllers\Controller;
-use ThunderByte\Ticket;
-use \ThunderByte\Http\Requests\Admin\Ticket as TicketRequest;
-use Picqer;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Picqer;
+use ThunderByte\Http\Controllers\Controller;
+use ThunderByte\Http\Requests\Admin\Ticket as TicketRequest;
+use ThunderByte\Ticket;
 
 class TicketController extends Controller
 {
@@ -18,15 +19,18 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $antecipated = Ticket::where('type', 'antecipated')->count();
-        $saturday = Ticket::where('type', 'saturday')->count();
-        $sunday = Ticket::where('type', 'sunday')->count();
+        $tickets = Ticket::all();
+
+        $antecipated = Ticket::where('type', 'Antecipado')->count();
+        $saturday = Ticket::where('type', 'Sábado')->count();
+        $sunday = Ticket::where('type', 'Domingo')->count();
 
         $ticketsTotal = Ticket::all()->count();
 
         $presents = Ticket::where('control', 'present')->count();
 
         return view('admin.tickets.index', [
+            'tickets' => $tickets,
             'antecipated' => $antecipated,
             'saturday' => $saturday,
             'sunday' => $sunday,
@@ -53,12 +57,12 @@ class TicketController extends Controller
      */
     public function store(TicketRequest $request)
     {
-        switch ($_POST['action']) {
+        switch ($request['action']) {
             case 'Antecipado':
                 $ticket = new Ticket();
                 $numero = 100 . rand(10000, 20000);
                 $ticket->number = $numero;
-                $ticket->type = 'antecipated';
+                $ticket->type = 'Antecipado';
                 $ticket->price = 40.00;
                 $ticket->save();
 
@@ -75,7 +79,7 @@ class TicketController extends Controller
                 $ticket = new Ticket();
                 $numero = 200 . rand(20001, 30000);
                 $ticket->number = $numero;
-                $ticket->type = 'saturday';
+                $ticket->type = 'Sábado';
                 $ticket->price = 30.00;
                 $ticket->save();
 
@@ -92,7 +96,7 @@ class TicketController extends Controller
                 $ticket = new Ticket();
                 $numero = 300 . rand(30001, 40000);
                 $ticket->number = $numero;
-                $ticket->type = 'sunday';
+                $ticket->type = 'Domingo';
                 $ticket->price = 30.00;
                 $ticket->save();
 
@@ -106,7 +110,13 @@ class TicketController extends Controller
                 break;
 
             default:
-                //no action sent
+                $ticket = new Ticket();
+                $ticket->number = $request->number;
+
+                DB::table('tickets')->where('number', $ticket->number)->update(array('control' => 'Presente'));
+
+                return redirect()->route('admin.tickets.control');
+
         }
     }
 
@@ -130,7 +140,12 @@ class TicketController extends Controller
      */
     public function edit($id)
     {
-        //
+        /*
+        $ticket = Ticket::where('number', $number);
+        return view('admin.tickets.control', [
+            'ticket' => $ticket
+        ]);
+        */
     }
 
     /**
@@ -154,5 +169,13 @@ class TicketController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function control()
+    {
+        $tickets = Ticket::all();
+        return view('admin.tickets.control', [
+            'tickets' => $tickets
+        ]);
     }
 }

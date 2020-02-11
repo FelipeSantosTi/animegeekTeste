@@ -30,8 +30,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             Route::resource('users', 'UserController');
 
             /** Ingressos */
-            Route::resource('tickets', 'TicketController');
             Route::get('tickets/print', 'TicketController@makeTicket')->name('tickets.print');
+            Route::get('tickets/control', 'TicketController@control')->name('tickets.control');
+            Route::resource('tickets', 'TicketController');
+
+
     });
 
     /** Logout */
