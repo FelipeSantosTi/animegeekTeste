@@ -49,7 +49,7 @@ use Picqer;
 <div id="footer">
 <?php
 $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($numero, $generator::TYPE_CODE_128)) . '">';
+echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($numero, $generator::TYPE_CODE_39)) . '">';
 ?>
 </div>
 </body>

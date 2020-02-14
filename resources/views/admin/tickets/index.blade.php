@@ -12,13 +12,9 @@
                     <ul>
                         <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                         <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.tickets.index') }}">Ingressos</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
                     </ul>
                 </nav>
-
-                <a href="{{ route('admin.tickets.create') }}" class="btn btn-orange icon-ticket ml-1">Gerar Ingresso</a>
-                <button class="btn btn-green icon-search icon-notext ml-1 search_open"></button>
+                <a href="{{ route('admin.tickets.index') }}" class="btn btn-orange icon-ticket ml-1">Gerar Ingresso</a>
             </div>
         </header>
 
@@ -63,7 +59,8 @@
                             <article class="blog radius">
                                 <h4 class="icon-ticket">Ingresso Antecipado</h4>
                                 <button type="submit" class="btn btn-large btn-green icon-check-square-o"
-                                        name="action" value="Antecipado" >Antecipado
+                                        name="action" value="Antecipado"
+                                        >Antecipado
                                 </button>
                             </article>
 

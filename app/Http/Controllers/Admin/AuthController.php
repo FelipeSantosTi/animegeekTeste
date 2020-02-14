@@ -21,20 +21,26 @@ class AuthController extends Controller
 
     public function home()
     {
-        $antecipated = Ticket::where('type', 'antecipated')->count();
-        $saturday = Ticket::where('type', 'saturday')->count();
-        $sunday = Ticket::where('type', 'sunday')->count();
+        $antecipated = Ticket::where('type', 'Antecipado')->count();
+        $saturday = Ticket::where('type', 'Sábado')->count();
+        $sunday = Ticket::where('type', 'Domingo')->count();
 
         $ticketsTotal = Ticket::all()->count();
 
-        $presents = Ticket::where('control', 'present')->count();
+        $presentsSaturday = Ticket::where('type', 'Sábado' AND 'control', 'present')->count();
+        $presentsSunday = Ticket::where('type', 'Domingo' AND 'control', 'present')->count();
+        $presentsAntecipated = Ticket::where('type', 'Antecipado' AND 'control', 'present')->count();
+        $presentsTotal = Ticket::where('control', 'Presente')->count();
 
         return view('admin.dashboard', [
             'antecipated' => $antecipated,
             'saturday' => $saturday,
             'sunday' => $sunday,
             'total' => $ticketsTotal,
-            'presents' => $presents
+            'presentsSaturday' => $presentsSaturday,
+            'presentsSunday' => $presentsSunday,
+            'presentsAntecipated' => $presentsAntecipated,
+            'presentsTotal' => $presentsTotal
         ]);
     }
 

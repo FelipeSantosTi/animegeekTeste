@@ -18,9 +18,11 @@
                 </article>
 
                 <article class="blog radius">
-                    <h4 class="icon-home">Pontos de Venda</h4>
-                    <p><b>Disponíveis:</b> 3</p>
-                    <p><b>Total Ingressos Vendidos:</b> 200</p>
+                    <h4 class="icon-users">Presentes</h4>
+                    <p><b>Antecipados:</b> {{ $presentsAntecipated }}</p>
+                    <p><b>Sábado:</b> {{ $presentsSaturday }}</p>
+                    <p><b>Domingo:</b> {{ $presentsSunday }}</p>
+                    <p><b>Total:</b> {{ $presentsTotal }}</p>
                 </article>
 
                 <article class="users radius">

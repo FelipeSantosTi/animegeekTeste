@@ -72,7 +72,7 @@ class TicketController extends Controller
                     'numero' => $numero,
                     'title' => $title
                 ]);
-                return $pdf->setPaper('a7')->stream('Ingresso_Antecipado.pdf');
+                return $pdf->setPaper('a7', 'landscape')->stream('Ingresso_Antecipado.pdf');
                 break;
 
             case 'Sábado':

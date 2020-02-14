@@ -12,12 +12,10 @@
                     <ul>
                         <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                         <li class="separator icon-angle-right icon-notext"></li>
-                        <li><a href="{{ route('admin.tickets.index') }}">Ingressos</a></li>
-                        <li class="separator icon-angle-right icon-notext"></li>
                     </ul>
                 </nav>
 
-                <a href="{{ route('admin.tickets.create') }}" class="btn btn-orange icon-ticket ml-1">Gerar Ingresso</a>
+                <a href="{{ route('admin.tickets.index') }}" class="btn btn-orange icon-ticket ml-1">Gerar Ingresso</a>
             </div>
         </header>
 
